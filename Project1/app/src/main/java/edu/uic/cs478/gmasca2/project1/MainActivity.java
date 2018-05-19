@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends Activity
-{
+public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,16 +20,12 @@ public class MainActivity extends Activity
         startActivityForResult(intent, 1);
     }
 
-    public void onActivityResult(int requestCode, int resultCode, final Intent data)
-    {
+    public void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1)
-        {
-            if (resultCode == RESULT_OK)
-            {
-                Button button = findViewById(R.id.button2);
-                button.setOnClickListener(new View.OnClickListener() {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                (findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Bundle extras = data.getExtras();
