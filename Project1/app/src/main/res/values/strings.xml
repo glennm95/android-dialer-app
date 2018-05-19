@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">Project 1</string>
-    <string name="welcome_text">Welcome</string>
-    <string name="button_1">Button 1</string>
-    <string name="button_2">Button 2</string>
+    <string name="app_name">Dialer App</string>
+    <string name="welcome_text">Welcome to Dialer App</string>
+    <string name="button_1">INPUT NUMBER</string>
+    <string name="button_2">CALL NUMBER</string>
+    <string name="input_number_hint">Enter Phone Number Here</string>
+    <string name="number_format_text">Accepted Input Format: (xxx) xxx-xxxx</string>
 </resources>

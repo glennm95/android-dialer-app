@@ -22,7 +22,7 @@ public class PhoneInput extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_input);
 
-        input = findViewById(R.id.editText2);
+        input = findViewById(R.id.number_input);
 
         input.setOnEditorActionListener(new TextView.OnEditorActionListener () {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -38,6 +38,7 @@ public class PhoneInput extends Activity {
                         setResult(RESULT_OK, intent);
                     else
                         setResult(RESULT_CANCELED, intent);
+
                     finish();
                 }
                 return false;

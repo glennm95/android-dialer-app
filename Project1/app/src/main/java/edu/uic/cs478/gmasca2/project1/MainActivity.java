@@ -13,45 +13,39 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        (findViewById(R.id.input_number_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, PhoneInput.class);
+                startActivityForResult(intent, 1);
+            }
+        });
     }
 
-    public void firstButtonPressed(View view) {
-        Intent intent = new Intent(this, PhoneInput.class);
-        startActivityForResult(intent, 1);
-    }
 
-    public void onActivityResult(int requestCode, int resultCode, final Intent data) {
+
+    public void onActivityResult(int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                (findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Bundle extras = data.getExtras();
-                        String userInputCorrect = extras.getString("keyName");
+        if (requestCode == 1 && data != null) {
+            Bundle extras = data.getExtras();
+            final String userInput = extras.getString("keyName");
 
-                        Uri number = Uri.parse("tel:" + userInputCorrect);
+            findViewById(R.id.call_number_button).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (resultCode == RESULT_OK){
+                        Uri number = Uri.parse("tel:" + userInput);
                         Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
                         startActivity(callIntent);
                     }
-                });
-            }
-            else if (resultCode == RESULT_CANCELED)
-            {
-                Button button = (Button) findViewById(R.id.button2);
-                button.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View v)
-                    {
-                        Bundle extras = data.getExtras();
-                        String userInputWrong = extras.getString("keyName");
 
-                        Toast.makeText(getApplicationContext(), "You entered an incorrect number: " + userInputWrong, Toast.LENGTH_LONG).show();
+                    else if (resultCode == RESULT_CANCELED){
+                        Toast.makeText(getApplicationContext(), "You entered an incorrect number: " + userInput, Toast.LENGTH_LONG).show();
                     }
-                });
-            }
+                }
+            });
         }
     }
 }
